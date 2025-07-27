@@ -90,7 +90,7 @@ allowedKeys := Map(
 ## 📁 File Structure
 
 ```
-rk61-conversion/
+Anne-Pro-2-to-RK61/
 ├── RK61_to_Anne_Pro_2.ahk  # Main script file
 ├── README.md               # This file
 ```
