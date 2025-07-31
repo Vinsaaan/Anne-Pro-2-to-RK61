@@ -1,4 +1,4 @@
-﻿; --- State Tracking ---
+; --- State Tracking ---
 capsPressed := false
 capsOtherKeyPressed := false
 
@@ -43,7 +43,8 @@ allowedKeys := Map(
     "F11", "{F11}",
     "F12", "{F12}",
     "p", "^{PrintScreen}",
-    "Escape", "``"
+    "Escape", "``",
+    "+Escape", "~"
 )
 
 ; --- CapsLock key handling ---
@@ -227,10 +228,11 @@ F12::HandleKey("F12")
 \::HandleKey("\")
 [::HandleKey("[")
 ]::HandleKey("]")
-`::HandleKey("``")
+::HandleKey("`")
 
 ; Special
 Escape::HandleKey("Escape")
++Escape::HandleKey("+Escape")  ; Shift + Escape
 
 ; --- Special Arrow Handling under CapsLock ---
 Up::Send("{Delete}")     ; CapsLock + Up = Delete
