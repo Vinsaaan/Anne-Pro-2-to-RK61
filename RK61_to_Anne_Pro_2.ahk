@@ -1,3 +1,25 @@
+; ============================================================
+; Custom Keyboard Script (AHK v2)
+; - Turns Win keys into Alt keys
+; - Custom CapsLock behavior (WASD as arrows, etc.)
+; ============================================================
+
+; --- Make Windows keys behave like Alt ---
+*LWin:: {
+    Send("{LAlt down}")
+}
+*LWin up:: {
+    Send("{LAlt up}")
+}
+
+*RWin:: {
+    Send("{RAlt down}")
+}
+*RWin up:: {
+    Send("{RAlt up}")
+}
+
+; ============================================================
 ; --- State Tracking ---
 capsPressed := false
 capsOtherKeyPressed := false
@@ -30,18 +52,6 @@ allowedKeys := Map(
     "a", "{Left}",
     "s", "{Down}",
     "d", "{Right}",
-    "F1", "{F1}",
-    "F2", "{F2}",
-    "F3", "{F3}",
-    "F4", "{F4}",
-    "F5", "{F5}",
-    "F6", "{F6}",
-    "F7", "{F7}",
-    "F8", "{F8}",
-    "F9", "{F9}",
-    "F10", "{F10}",
-    "F11", "{F11}",
-    "F12", "{F12}",
     "p", "^{PrintScreen}",
     "Escape", "``"
 )
@@ -65,7 +75,7 @@ CapsLock Up:: {
     SetTimer(CheckDRelease, 0)
     
     if (!capsOtherKeyPressed) {
-        ; Toggle the actual CapsLock state
+        ; Toggle actual CapsLock state
         if (GetKeyState("CapsLock", "T")) {
             SetCapsLockState("Off")
         } else {
@@ -96,7 +106,7 @@ HandleKey(key) {
 ; --- CapsLock Combinations ---
 #HotIf GetKeyState("CapsLock", "P")
 
-; Letters - Special handling for WASD (arrow keys) with safety checks
+; Letters - Special handling for WASD (arrow keys)
 w:: {
     global capsOtherKeyPressed := true
     Send("{Up down}")
@@ -137,7 +147,7 @@ d Up:: {
     SetTimer(CheckDRelease, 0)
 }
 
-; Safety timer functions to prevent stuck keys
+; Safety timers
 CheckWRelease() {
     if (!GetKeyState("w", "P") || !GetKeyState("CapsLock", "P")) {
         Send("{Up up}")
@@ -166,7 +176,7 @@ CheckDRelease() {
     }
 }
 
-; Other letters use normal HandleKey
+; Other letters
 b::HandleKey("b")
 c::HandleKey("c")
 e::HandleKey("e")
@@ -227,15 +237,16 @@ F12::HandleKey("F12")
 \::HandleKey("\")
 [::HandleKey("[")
 ]::HandleKey("]")
-`::HandleKey("``")
+`::HandleKey("~")
 
 ; Special
 Escape::HandleKey("Escape")
 
-; --- Special Arrow Handling under CapsLock ---
+; Special Arrow Handling under CapsLock
 Up::Send("{Delete}")     ; CapsLock + Up = Delete
-Left::Return             ; CapsLock + Left = Blocked
-Down::Return             ; CapsLock + Down = Blocked
-Right::Return            ; CapsLock + Right = Blocked
+Left::Return
+Down::Return
+Right::Return
 
 #HotIf  ; End CapsLock block
+; ============================================================
