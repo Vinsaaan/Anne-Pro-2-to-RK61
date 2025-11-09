@@ -4,8 +4,8 @@
 ; - Custom CapsLock behavior (WASD as arrows, etc.)
 ; ============================================================
 
-; reload every 1 minute (to prevent load issues)
-SetTimer(AutoReload, 60000) ; 60000 ms = 1 minute
+; reload every 5 minute (to prevent load issues)
+SetTimer(AutoReload, 300000) ; 300000 ms = 5 minutes
 
 AutoReload() {
     Reload  ; reloads the current script
