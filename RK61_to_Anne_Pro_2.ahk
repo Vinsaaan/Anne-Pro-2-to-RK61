@@ -4,11 +4,16 @@
 ; - Custom CapsLock behavior (WASD as arrows, etc.)
 ; ============================================================
 
-; reload every 5 minute (to prevent load issues)
+; reload every 5 minutes (to prevent load issues)
 SetTimer(AutoReload, 300000) ; 300000 ms = 5 minutes
 
 AutoReload() {
     Reload  ; reloads the current script
+}
+
+; Right Shift reloads script (simple)
+RShift:: {
+    Reload
 }
 
 
