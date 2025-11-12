@@ -11,7 +11,7 @@ AutoReload() {
     Reload  ; reloads the current script
 }
 
-; Right Shift reloads script (simple)
+; Right Shift reloads script
 RShift:: {
     Reload
 }
@@ -263,3 +263,4 @@ Right::Return
 
 #HotIf  ; End CapsLock block
 ; ============================================================
+
